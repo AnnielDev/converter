@@ -8,5 +8,5 @@ npm install
 
 # Run this app
 ```shell script
-npm run dev
+npm start 
 ```

@@ -1,67 +1,36 @@
-<div class="flex h-[100vh]">
-  <div class="flex flex-col gap-10 py-8 bg-[#1c2b45]">
-    <div class="px-14">
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <div class="flex justify-center py-4">
       <img
         src="icon.png"
         alt=""
         class="w-20 h-20 outline-none cursor-pointer"
-        routerLink="/"
+        routerLink="/metric-currency"
       />
     </div>
-    <div>
-      <ul class="flex flex-col">
-        @for (route of routes; track $index) {
-        <li>
-          <a
-            [class]="currentUrl === route.route ? 'bg-slate-600' : ''"
-            class="text-white text-center py-4 cursor-pointer flex items-center justify-center gap-2 hover:bg-slate-600 font-semibold capitalize"
-            [routerLink]="route.route"
-          >
-            <mat-icon [fontIcon]="route.icon" />
-            <span>
-              {{ route.name }}
-            </span>
-          </a>
-        </li>
-        }
-      </ul>
-    </div>
-  </div>
-  <div class="bg-[#0a1229] grow">
-    @if(currentUrl === '/'){
-    <div class="flex h-screen items-center justify-center">
-      <span class="flex flex-col text-white gap-6">
-        <span class="font-bold text-2xl">🌟 Bienvenido a Converter 🌟</span>
-        <span class="font-medium text-lg">
-          🔄 Convierte de manera rápida y sencilla cualquier medida que
-          necesites:
-        </span>
-        <span class="font-medium text-lg">
-          💰 Moneda: Transforma divisas al instante.
-        </span>
-        <span class="font-medium text-lg">
-          🌡 Temperatura: Cambia entre Celsius, Fahrenheit y más.
-        </span>
-        <span class="font-medium text-lg">
-          ⚖ Peso: Encuentra equivalencias precisas entre kilogramos, libras y
-          otras unidades.
-        </span>
-        <span class="font-medium text-lg">
-          ⏳ Tiempo: Convierte horas, minutos y segundos según lo necesites.
-        </span>
-        <span class="font-medium text-lg">
-          📏 Longitudes: Trabaja con metros, metros, kilometros y más.
-        </span>
-        <span class="font-medium text-lg">
-          ✨ Simplifica tus cálculos y optimiza tu tiempo con converter.
-        </span>
-        <span class="font-medium text-lg">
-          ¡Comienza ahora y explora todo lo que puedes hacer! 🚀
-        </span>
-      </span>
-    </div>
-    }@else {
+    <ul class="flex flex-col">
+      @for (route of routes; track $index) {
+      <li (click)="showNav = !showNav">
+        <a
+          [class]="currentUrl === route.route ? 'bg-slate-600' : ''"
+          class="text-white text-center py-4 cursor-pointer flex items-center justify-center gap-2 hover:bg-slate-600 font-semibold capitalize"
+          [routerLink]="route.route"
+        >
+          <mat-icon [fontIcon]="route.icon" />
+          <span>
+            {{ route.name }}
+          </span>
+        </a>
+      </li>
+      }
+    </ul>
+  </mat-drawer>
+  <div>
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon fontIcon="menu" />
+      Converter
+    </button>
+
     <router-outlet />
-    }
   </div>
-</div>
+</mat-drawer-container>

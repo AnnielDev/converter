@@ -1,1 +1,28 @@
-<div></div>
+<div class="flex flex-col min-h-full">
+  <div class="flex items-center">
+    <mat-form-field class="w-full">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [value]="temperature" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Scales</mat-label>
+      <mat-select [(value)]="selectedScale">
+        @for (scale of scales; track $index) {
+        <mat-option [value]="scale">{{ scale }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  @if(selectedScale && temperature) {
+  <div>
+    @for (result of results; track $index) { @if(result.scale !== selectedScale)
+    {
+    <app-card
+      [title]="result.scale"
+      [value]="result.value"
+      icon="device_thermostat"
+    />
+    } }
+  </div>
+  }
+</div>

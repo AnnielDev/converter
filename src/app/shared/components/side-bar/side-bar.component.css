@@ -1,0 +1,10 @@
+.container {
+    min-width: 100vw;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.sidenav{
+    width: 200px;
+    background-color: #1c2b45;
+}
